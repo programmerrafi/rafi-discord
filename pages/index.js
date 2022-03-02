@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import SideBar from "../components/Sidebar";
+import SideBar from "../components/SideBar/SideBar";
 import ConversationList from "../components/ConversationList";
 import ChatView from "../components/ChatView";
 
