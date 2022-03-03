@@ -10,12 +10,13 @@ import styles from "../../../styles/chatHeader.module.css";
 import ethLogo from "../../../assets/eth.png";
 import { useContext } from "react";
 import { DiscordContext } from "../../../context/context";
+import { NotificationsProvider } from "@mantine/notifications";
+import Notify from "../../Notification/Notify";
 
 // const currentAccount = "54745hdfdfjhg834hkhr847hjh4349njn5459";
 
 const ChatHeader = () => {
-  const { roomName, currentAccount, connectWallet } =
-    useContext(DiscordContext);
+  const { roomName, currentAccount } = useContext(DiscordContext);
 
   return (
     <div className={styles.chatHeader}>
@@ -31,9 +32,17 @@ const ChatHeader = () => {
           {currentAccount.slice(0, 6)}...{currentAccount.slice(39)}
         </div>
       ) : (
-        <div className={styles.connectWallet} onClick={() => connectWallet()}>
-          Connect Wallet
-        </div>
+        <>
+          <NotificationsProvider position="top-right" zIndex={2077}>
+            {/* <div
+              className={styles.connectWallet}
+              onClick={() => connectWallet()}
+            >
+              Connect Wallet
+            </div> */}
+            <Notify />
+          </NotificationsProvider>
+        </>
       )}
 
       <div className={styles.headerIconsContainer}>

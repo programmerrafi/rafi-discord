@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DiscordContext } from "../../../context/context";
 import styles from "../../../styles/messageForm.module.css";
 import plusFilled from "../../../assets/icons/plus-filled.svg";
@@ -7,8 +7,10 @@ import smiley from "../../../assets/icons/smiley.svg";
 import gift from "../../../assets/icons/gift.svg";
 import gif from "../../../assets/icons/gif.svg";
 import Image from "next/image";
+import Modalst from "../../Modal/Modal";
 
 const MessageForm = () => {
+  const [opened, setOpened] = useState(false);
   const {
     messageText,
     setMessageText,
@@ -24,11 +26,12 @@ const MessageForm = () => {
     if (messageText.trim() === "") return;
 
     const messagesRef = gun.get(roomName);
+    currentUser === undefined ? setOpened(true) : setOpened(false);
 
     const newMessage = {
-      sender: currentUser.name,
-      avatar: currentUser.avatar
-        ? currentUser.avatar
+      sender: currentUser?.name,
+      avatar: currentUser?.avatar
+        ? currentUser?.avatar
         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU",
       content: messageText.trim(),
       createdAt: Date().substring(4, 11),
@@ -40,42 +43,50 @@ const MessageForm = () => {
   };
 
   return (
-    <form
-      onSubmit={(event) => sendMessage(event)}
-      className={styles.chatInputContainer}
-    >
-      <div className={styles.chatInputWrapper}>
-        <div className={styles.svgContainer}>
-          <Image
-            height={25}
-            width={25}
-            src={plusFilled}
-            className={styles.svg}
+    <>
+      <form
+        onSubmit={(event) => sendMessage(event)}
+        className={styles.chatInputContainer}
+      >
+        <div className={styles.chatInputWrapper}>
+          <div className={styles.svgContainer}>
+            <Image
+              height={25}
+              width={25}
+              src={plusFilled}
+              className={styles.svg}
+            />
+          </div>
+          <input
+            type="text"
+            className={styles.chatInput}
+            value={messageText}
+            disabled={currentAccount.name}
+            onChange={(e) => setMessageText(e.target.value)}
+            placeholder={placeholder}
           />
-        </div>
-        <input
-          type="text"
-          className={styles.chatInput}
-          value={messageText}
-          disabled={currentAccount.name}
-          onChange={(e) => setMessageText(e.target.value)}
-          placeholder={placeholder}
-        />
 
-        <div className={styles.svgContainer}>
-          <Image height={25} width={25} src={gift} className={styles.svg} />
+          <div className={styles.svgContainer}>
+            <Image height={25} width={25} src={gift} className={styles.svg} />
+          </div>
+          <div className={styles.svgContainer}>
+            <Image height={25} width={25} src={gif} className={styles.svg} />
+          </div>
+          <div className={styles.svgContainer}>
+            <Image
+              height={25}
+              width={25}
+              src={sticker}
+              className={styles.svg}
+            />
+          </div>
+          <div className={styles.svgContainer}>
+            <Image height={25} width={25} src={smiley} className={styles.svg} />
+          </div>
         </div>
-        <div className={styles.svgContainer}>
-          <Image height={25} width={25} src={gif} className={styles.svg} />
-        </div>
-        <div className={styles.svgContainer}>
-          <Image height={25} width={25} src={sticker} className={styles.svg} />
-        </div>
-        <div className={styles.svgContainer}>
-          <Image height={25} width={25} src={smiley} className={styles.svg} />
-        </div>
-      </div>
-    </form>
+      </form>
+      <Modalst setOpened={setOpened} opened={opened} />
+    </>
   );
 };
 

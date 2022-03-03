@@ -31,8 +31,10 @@ export const DiscordProvider = ({ children }) => {
   const [placeholder, setPlaceholder] = useState("Message...");
   const [messageText, setMessageText] = useState("");
   const [currentUser, setCurrentUser] = useState();
+  const [showNotify, setShowNotify] = useState(null);
 
   useEffect(() => {
+    setShowNotify(window?.ethereum);
     checkIfWalletIsConnected();
   }, []);
 
@@ -80,7 +82,6 @@ export const DiscordProvider = ({ children }) => {
 
   const createUserAccount = async (userAddress = currentAccount) => {
     if (!window.ethereum) return;
-
     try {
       const data = {
         userAddress: userAddress,
@@ -131,7 +132,9 @@ export const DiscordProvider = ({ children }) => {
   };
 
   const connectWallet = async () => {
-    if (!window?.ethereum) return;
+    setShowNotify(window?.ethereum);
+    if (!window.ethereum) return;
+
     try {
       const addressArray = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -159,6 +162,7 @@ export const DiscordProvider = ({ children }) => {
         gun,
         connectWallet,
         currentUser,
+        showNotify,
       }}
     >
       {children}
