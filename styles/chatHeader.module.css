@@ -7,6 +7,8 @@
   padding: 10px;
   border-bottom: 1px solid #2022256e;
   z-index: 10;
+  position: sticky;
+  top: 0;
 }
 
 .roomNameContainer {
@@ -15,6 +17,11 @@
   border-width: 2px;
   border-color: var(--light-grey);
   flex: 1;
+}
+.menuI {
+  margin-right: 10px;
+  font-size: 21px;
+  cursor: pointer;
 }
 
 .svg {
@@ -37,7 +44,8 @@
   left: 80px;
 }
 
-.headerIconsContainer {
+.headerIconsContainer,
+.mobile_icon {
   display: flex;
   align-items: center;
 }
@@ -45,7 +53,18 @@
 .headerItem {
   margin-right: 10px;
 }
-
+.headerItem_m {
+  display: none;
+}
+@media only screen and (max-width: 1024px) {
+  .headerItem {
+    display: none;
+  }
+  .headerItem_m {
+    margin-right: 10px;
+    display: block;
+  }
+}
 .connectWallet {
   margin-right: 10px;
   background-color: #5a65f1;

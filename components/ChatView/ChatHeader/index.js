@@ -12,15 +12,20 @@ import { useContext } from "react";
 import { DiscordContext } from "../../../context/context";
 import { NotificationsProvider } from "@mantine/notifications";
 import Notify from "../../Notification/Notify";
-
+import { AiOutlineMenu } from "react-icons/ai";
 // const currentAccount = "54745hdfdfjhg834hkhr847hjh4349njn5459";
 
 const ChatHeader = () => {
-  const { roomName, currentAccount } = useContext(DiscordContext);
+  const { roomName, currentAccount, handleClickMenu } =
+    useContext(DiscordContext);
 
   return (
     <div className={styles.chatHeader}>
       <div className={styles.roomNameContainer}>
+        <AiOutlineMenu
+          className={styles.menuI}
+          onClick={() => handleClickMenu()}
+        />
         <Image height={20} width={20} src={at} className={styles.svg} alt="" />
         <h3 className={styles.title}>{roomName}</h3>
         <div className={styles.chatHeaderStatus} id="online" />
@@ -34,12 +39,6 @@ const ChatHeader = () => {
       ) : (
         <>
           <NotificationsProvider position="top-right" zIndex={2077}>
-            {/* <div
-              className={styles.connectWallet}
-              onClick={() => connectWallet()}
-            >
-              Connect Wallet
-            </div> */}
             <Notify />
           </NotificationsProvider>
         </>
@@ -97,6 +96,18 @@ const ChatHeader = () => {
           className={styles.svg}
           alt=""
         />
+      </div>
+      {/* Mobile  */}
+      <div className={styles.mobile_icon}>
+        <div className={styles.headerItem_m}>
+          <Image
+            height={25}
+            width={25}
+            src={personPlus}
+            className={styles.svg}
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

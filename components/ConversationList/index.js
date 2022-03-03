@@ -4,9 +4,12 @@ import Image from "next/image";
 import friends from "../../assets/icons/friends.svg";
 import nitro from "../../assets/icons/nitro.svg";
 import DmCard from "./DmCard";
+import { useContext } from "react";
+import { DiscordContext } from "../../context/context";
 
 const ConversationList = () => {
   const [dms, setDms] = useState([]);
+  const { showMenu } = useContext(DiscordContext);
 
   useEffect(async () => {
     try {
@@ -19,7 +22,10 @@ const ConversationList = () => {
   }, []);
 
   return (
-    <div className={styles.conversations}>
+    <div
+      className={styles.conversations}
+      style={{ display: `${showMenu ? "block" : "none"}` }}
+    >
       <div className={styles.conversationListTop}>
         <input type="search" placeholder="Find or start a conversation" />
       </div>

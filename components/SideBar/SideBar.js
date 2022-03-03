@@ -2,10 +2,13 @@ import styles from "../../styles/sidebar.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import RoomAvatar from "./RoomAvatar";
+import { useContext } from "react";
+import { DiscordContext } from "../../context/context";
 
 const Sidebar = () => {
   const router = useRouter();
   const [channels, setChannels] = useState([]);
+  const { showMenu } = useContext(DiscordContext);
 
   useEffect(async () => {
     try {
@@ -23,7 +26,10 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      style={{ display: `${showMenu ? "block" : "none"}` }}
+    >
       {channels.map((channel, index) => (
         <RoomAvatar
           key={index}

@@ -1,13 +1,13 @@
 .chatInputContainer {
-  position: fixed;
+  position: sticky;
   bottom: 0px;
-  width: 100%;
+  width: 96%;
   padding: 20px 0;
+  margin: 0 auto;
 }
 
 .chatInputWrapper {
-  width: 83%;
-  margin-left: 35px;
+  width: 100%;
   height: 44px;
   background: #40444b;
   padding: 0 15px;

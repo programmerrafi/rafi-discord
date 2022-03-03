@@ -32,6 +32,7 @@ export const DiscordProvider = ({ children }) => {
   const [messageText, setMessageText] = useState("");
   const [currentUser, setCurrentUser] = useState();
   const [showNotify, setShowNotify] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     setShowNotify(window?.ethereum);
@@ -149,6 +150,13 @@ export const DiscordProvider = ({ children }) => {
     }
   };
 
+  const handleClickMenu = () => {
+    setShowMenu(true);
+    if (showMenu === true) {
+      setShowMenu(false);
+    }
+  };
+
   return (
     <DiscordContext.Provider
       value={{
@@ -163,6 +171,8 @@ export const DiscordProvider = ({ children }) => {
         connectWallet,
         currentUser,
         showNotify,
+        handleClickMenu,
+        showMenu,
       }}
     >
       {children}
