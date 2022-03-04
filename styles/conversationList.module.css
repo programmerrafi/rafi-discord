@@ -3,9 +3,13 @@
   overflow-y: scroll;
   position: relative;
   background: #2f3136;
+  z-index: 20;
 }
 .conversations::-webkit-scrollbar {
   display: none;
+}
+.d_show {
+  display: block !important;
 }
 
 @media only screen and (max-width: 1024px) {

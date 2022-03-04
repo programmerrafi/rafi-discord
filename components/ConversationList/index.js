@@ -22,10 +22,7 @@ const ConversationList = () => {
   }, []);
 
   return (
-    <div
-      className={styles.conversations}
-      style={{ display: `${showMenu ? "block" : "none"}` }}
-    >
+    <div className={`${styles.conversations} ${showMenu && styles.d_show}`}>
       <div className={styles.conversationListTop}>
         <input type="search" placeholder="Find or start a conversation" />
       </div>

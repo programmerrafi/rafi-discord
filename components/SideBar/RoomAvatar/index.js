@@ -1,12 +1,16 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "../../../styles/roomAvatar.module.css";
+import { useContext } from "react";
+import { DiscordContext } from "../../../context/context";
 
 const RoomAvatar = ({ id, avatar, name }) => {
   const router = useRouter();
+  const { setShowMenu } = useContext(DiscordContext);
 
   const changeUrl = () => {
     router.push(`?channel=${id}&name=${name}`);
+    setShowMenu(false);
   };
 
   return (

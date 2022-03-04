@@ -5,9 +5,16 @@
   position: relative;
   flex: 1;
   padding-top: 10px;
+  z-index: 20;
 }
 .wrapper::-webkit-scrollbar {
   display: none;
+}
+.wrapper {
+  display: block;
+}
+.d_show1 {
+  display: block !important;
 }
 @media only screen and (max-width: 1024px) {
   .wrapper {

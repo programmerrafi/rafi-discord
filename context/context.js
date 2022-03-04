@@ -173,6 +173,7 @@ export const DiscordProvider = ({ children }) => {
         showNotify,
         handleClickMenu,
         showMenu,
+        setShowMenu,
       }}
     >
       {children}

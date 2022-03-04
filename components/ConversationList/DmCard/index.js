@@ -1,12 +1,16 @@
 import Image from "next/image";
 import styles from "../../../styles/dmCard.module.css";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { DiscordContext } from "../../../context/context";
 
 const DmCard = ({ name, status, avatar, id }) => {
   const router = useRouter();
+  const { setShowMenu } = useContext(DiscordContext);
 
   const changeUrl = () => {
     router.push(`?conversation=${id}&name=${name}`);
+    setShowMenu(false);
   };
 
   return (

@@ -26,10 +26,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div
-      className={styles.wrapper}
-      style={{ display: `${showMenu ? "block" : "none"}` }}
-    >
+    <div className={`${styles.wrapper} ${showMenu && styles.d_show1}`}>
       {channels.map((channel, index) => (
         <RoomAvatar
           key={index}
